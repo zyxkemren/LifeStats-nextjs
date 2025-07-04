@@ -1,0 +1,45 @@
+html {
+  background: #1a120b;
+  font-family: "Press Start 2P", Times;
+  color: white;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+.page-container {
+  max-width: 1256px;
+  padding: 0 2rem;
+  margin: 5rem auto;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: row;
+  margin: 5vh auto;
+  gap: 2rem;
+}
+
+.stats-char {
+  background-color: #0c0804;
+  border-radius: 15px;
+  flex: 1;
+}
+
+.stats {
+  color: #e7e7e7;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.stats p {
+  font-family: 'PixelifySans', monospace;
+  color: #e7e7e7;
+  font-size: 1.2rem;
+}

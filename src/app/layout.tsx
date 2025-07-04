@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  icons: "/icon.png",
-  title: "Anomaly Studio",
+  title: "Life Statistic",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
