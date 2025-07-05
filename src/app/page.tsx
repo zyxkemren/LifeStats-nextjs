@@ -146,8 +146,11 @@ export default function Home() {
                     key={index + 200}
                   >
                     <div className="stats-detailed-popup" onClick={(e) => e.stopPropagation()}>
-                      <h2>{stat.n.replace(/^[\p{Emoji_Presentation}\p{Extended_Pictographic}\s]+/gu, "")}</h2>
-                      <p>You have <span className="pts">24 points</span> on {stat.n.replace(/^[\p{Emoji_Presentation}\p{Extended_Pictographic}\s]+/gu, "")} stats, keep improving!</p>
+                      <h2>{stat.n.replace(/^[\p{Emoji_Presentation}\p{Extended_Pictographic}\s]+/gu, "").replace(/\s+/g, "")}</h2>
+                      <p>
+                        You have <span className="pts">24 points</span> on{" "}
+                        {stat.n.replace(/^[\p{Emoji_Presentation}\p{Extended_Pictographic}\s]+/gu, "")} stats, keep improving!
+                      </p>
                     </div>
                   </div>
                 </>

@@ -12,7 +12,7 @@ type Props = {
 
 export default function RadarChart({ data, options }: Props) {
   return (
-    <div className="w-full m-[1rem] p-4 rounded-xl shadow">
+    <div className="stats-radar w-full p-4 rounded-xl shadow">
       <Radar data={data} options={options} />
     </div>
   );

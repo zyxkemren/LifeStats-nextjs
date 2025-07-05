@@ -1,5 +1,5 @@
 html {
-  background: #310535;
+  background: #1e1b2e;
   font-family: "PixelifySans", Times;
   color: white;
 }
@@ -27,13 +27,13 @@ h2 {
   display: flex;
   flex-direction: row;
   margin: 5vh auto;
-  gap: 2rem;
 }
 
 .stats-char {
   background-color: #0f070a;
   border-radius: 5px;
   flex: 1;
+  padding: 0 1rem;
 }
 
 .stats {
@@ -42,21 +42,21 @@ h2 {
   flex-direction: column;
   font-family: "", monospace;
   color: #e7e7e7;
+  background-color: #0f070a;
   font-size: 1.2rem;
+  padding: 3rem 3rem 1rem 1rem;
 }
 
 .stats-detailed {
-  background-color: #0f070a;
   padding: 0.5rem 1rem;
-  border-radius: 5px;
   width: calc(50% - 0.5rem);
-  outline: solid transparent 1px;
+  outline: solid #3e3b4e 2px;
   transition: outline 0.5s ease;
   cursor: pointer;
 }
 
 .stats-detailed:hover {
-  outline: solid #d8d8d8 1px;
+  outline: solid #d8d8d8 2px;
 }
 
 .stats-detailed-popup-container {
@@ -80,7 +80,7 @@ h2 {
   width: 100%;
   max-width: 768px;
   margin: 20vh auto;
-  background-color: #1a120b;
+  background-color: #1e1b2e;
   padding: 1rem 2rem;
   border-radius: 5px;
 }
