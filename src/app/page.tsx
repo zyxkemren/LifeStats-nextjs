@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, Fragment } from "react";
 import RadarChart from "@/components/ui/RadarChart";
 import "./page.css";
 import Footer from "@/components/ui/Footer";
@@ -12,6 +12,8 @@ const config = [
     n: "Intelligence",
     s: [
       { name: "Study for 10 minutes", point: 1 },
+      { name: "Read a book chapter", point: 2 },
+      { name: "Watch educational video", point: 1 },
       { name: "Read a book chapter", point: 2 },
       { name: "Watch educational video", point: 1 },
     ],
@@ -54,18 +56,6 @@ const config = [
   },
 ];
 
-const data = {
-  labels: ["Intelligence", "Social", "Discipline", "Vitality", "Wisdom"],
-  datasets: [
-    {
-      data: [80, 60, 75, 90, 65],
-      backgroundColor: "rgba(54, 162, 235, 0.3)",
-      borderColor: "rgba(54, 162, 235, 1)",
-      borderWidth: 2,
-    },
-  ],
-};
-
 const options = {
   scales: {
     r: {
@@ -92,6 +82,8 @@ const options = {
       angleLines: {
         color: "rgba(255, 255, 255, 0.2)",
       },
+      suggestedMin: 0,
+      suggestedMax: 10,
     },
   },
   plugins: {
@@ -117,16 +109,46 @@ const options = {
 
 export default function Home() {
   const [indexOpened, setIndexOpened] = useState(-1);
-  const [name, setName] = useState("Daffa Adli Putra Umardani");
+  const [statsData, setStatsData] = useState({
+    name: "Daffa Adli Putra Umardani",
+    labels: ["Intelligence", "Social", "Discipline", "Vitality", "Wisdom"],
+    datasets: [
+      {
+        data: [0, 0, 0, 0, 0],
+        backgroundColor: "rgba(54, 162, 235, 0.3)",
+        borderColor: "rgba(54, 162, 235, 1)",
+        borderWidth: 2,
+      },
+    ],
+  });
+
+  const increaseStats = (index: number, amount: number = 1) => {
+    setStatsData((prev) => {
+      const newData = [...prev.datasets[0].data];
+      newData[index] += amount;
+
+      return {
+        ...prev,
+        datasets: [
+          {
+            ...prev.datasets[0],
+            data: newData,
+          },
+        ],
+      };
+    });
+  };
 
   return (
     <main>
       <div className="page-container">
-        <h1>Life Stats</h1>
+        <h1>
+          Life Stats<span className="version"> v0.2.4</span>
+        </h1>
         <div className="stats-container">
           <div className="stats-char">
             {" "}
-            <RadarChart data={data} options={options} />
+            <RadarChart data={statsData} options={options} />
           </div>
           <div className="stats">
             <div className="name">
@@ -135,7 +157,7 @@ export default function Home() {
             </div>
             <div className="stats-detail">
               {stats.map((stat, index) => (
-                <>
+                <Fragment key={index + 100}>
                   <div className="stats-detailed" key={index + 100} onClick={() => setIndexOpened(index + 100)}>
                     {stat.n}
                   </div>
@@ -148,12 +170,12 @@ export default function Home() {
                     <div className="stats-detailed-popup" onClick={(e) => e.stopPropagation()}>
                       <h2>{stat.n.replace(/^[\p{Emoji_Presentation}\p{Extended_Pictographic}\s]+/gu, "").replace(/\s+/g, "")}</h2>
                       <p>
-                        You have <span className="pts">24 points</span> on{" "}
+                        You have <span className="pts">{statsData.datasets[0].data[index]} points</span> on{" "}
                         {stat.n.replace(/^[\p{Emoji_Presentation}\p{Extended_Pictographic}\s]+/gu, "")} stats, keep improving!
                       </p>
                     </div>
                   </div>
-                </>
+                </Fragment>
               ))}
             </div>
           </div>
@@ -166,12 +188,14 @@ export default function Home() {
                 {conf.n}
                 <img src={`/ui/${indexOpened == index ? "up.png" : "down.png"}`} />
               </div>
-              {conf.s.map((activity, i) => (
-                <div className="stats-activity" key={i}>
-                  <span>{activity.name}</span>
-                  <span className="pts"> +{activity.point} pts</span>
-                </div>
-              ))}
+              <div className="stats-activity-container">
+                {conf.s.map((activity, i) => (
+                  <div className="stats-activity" key={i} onClick={() => increaseStats(index, activity.point)}>
+                    <span>{activity.name}</span>
+                    <span className="pts"> +{activity.point} pts</span>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
