@@ -11,8 +11,8 @@ const config = [
   {
     n: "Intelligence",
     s: [
-      { name: "Study for 10 minutes", point: 1 },
-      { name: "Read a book chapter", point: 2 },
+      { name: "Belajar 15 menit", point: 1 },
+      { name: "Baca buku 1 chapter", point: 2 },
       { name: "Watch educational video", point: 1 },
       { name: "Read a book chapter", point: 2 },
       { name: "Watch educational video", point: 1 },
@@ -24,7 +24,7 @@ const config = [
       { name: "Talk to a new person", point: 2 },
       { name: "Help someone", point: 1 },
       { name: "Join a group activity", point: 2 },
-      { name: "Compliment someone sincerely", point: 1 },
+      { name: "Ngobrol dengan ortu", point: 1 },
     ],
   },
   {
@@ -48,8 +48,8 @@ const config = [
   {
     n: "Wisdom",
     s: [
-      { name: "Reflect on your day", point: 1 },
-      { name: "Write in a journal", point: 1 },
+      { name: "Baca Al-Qur'an 1 juz", point: 2 },
+      { name: "Sholat 5 waktu", point: 1 },
       { name: "Listen to a mentor/podcast", point: 2 },
       { name: "Make a wise decision", point: 2 },
     ],
@@ -143,16 +143,15 @@ export default function Home() {
     <main>
       <div className="page-container">
         <h1>
-          Life Stats<span className="version"> v0.2.4</span>
+          Life Stats<span className="version"> v1.0.0</span>
         </h1>
         <div className="stats-container">
           <div className="stats-char">
-            {" "}
             <RadarChart data={statsData} options={options} />
           </div>
           <div className="stats">
             <div className="name">
-              <h2>Daffa Adli Putra Umardani</h2>
+              <h2>{statsData.name}</h2>
               <p className="created-at">Stats since 04 July 2025</p>
             </div>
             <div className="stats-detail">
@@ -180,7 +179,11 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <h2>Increase your stats</h2>
+        <div className="name-mobile">
+          <h2>{statsData.name}</h2>
+          <p className="created-at">Stats since 04 July 2025</p>
+        </div>
+        <h2 className="stats-increase">Increase your stats</h2>
         <div className="stats-edit-container">
           {config.map((conf, index) => (
             <div className={`stats-edit ${indexOpened === index ? "open" : ""}`} key={index}>

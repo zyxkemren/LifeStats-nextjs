@@ -5,11 +5,13 @@ html {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 5vw, 2rem);
+  font-weight: 700;
 }
 
 h2 {
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 3.5vw, 1.4rem);
+  font-weight: 600;
 }
 
 h1,
@@ -33,7 +35,7 @@ h2 {
 .stats-container {
   display: flex;
   flex-direction: row;
-  margin: 5vh auto;
+  margin: 2rem auto 0;
 }
 
 .stats-char {
@@ -61,7 +63,8 @@ h2 {
   cursor: pointer;
 }
 
-.stats-detailed:hover, .stats-activity:hover {
+.stats-detailed:hover,
+.stats-activity:hover {
   outline: solid #d8d8d8 2px;
 }
 
@@ -83,7 +86,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 100%;
+  width: calc(100% - 2rem);
   max-width: 768px;
   margin: 20vh auto;
   background-color: #1e1b2e;
@@ -160,4 +163,84 @@ h2 {
 
 .stats-edit.open .stats-activity {
   opacity: 1;
+}
+
+.stats-increase {
+  margin: 2rem 0 0;
+}
+
+.name-mobile {
+  display: none;
+  padding: 2rem;
+  background-color: #0f070a;
+}
+
+@media (max-width: 1256px) {
+  .name {
+    display: none;
+  }
+  .name-mobile {
+    display: block;
+  }
+  .stats-detail {
+    margin: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .stats-activity {
+    width: calc(33% - 0.75rem);
+  }
+  .stats-edit.open {
+    max-height: 325px;
+  }
+}
+
+@media (max-width: 868px) {
+  .stats-detailed {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-activity {
+    width: calc(50% - 0.75rem);
+  }
+  .stats-edit.open {
+    max-height: 450px;
+  }
+}
+
+@media (max-width: 700px) {
+  .stats-container {
+    flex-direction: column;
+  }
+  .stats-char {
+    width: 100%;
+  }
+  .stats {
+    padding: 0 2rem;
+  }
+  .stats-detail {
+    display: flex;
+    flex-direction: row;
+  }
+  .stats-detailed {
+    width: calc(50% - 0.5rem);
+  }
+}
+
+@media (max-width: 624px) {
+  .stats-activity {
+    width: 100%;
+  }
+  .stats-edit.open {
+    max-height: 725px;
+  }
+}
+
+@media (max-width: 560px) {
+  .stats-detailed {
+    width: 100%;
+  }
 }
